@@ -162,6 +162,15 @@ module.exports = {
                         ]
                     },
                     {
+                        text: 'Netty',
+                        items: [
+                            {
+                                text: 'Netty基础篇',
+                                link: '/md/netty/basics/NIO基础：三大组件.md'
+                            }
+                        ]
+                    }
+                    {
                         text: '中间件',
                         items: [
                             {
@@ -174,7 +183,8 @@ module.exports = {
                 sidebar: {
                     "/md/java/interview/": genBarJavaInterview(),
                     "/md/java/develop-jvm/": genBarJavaDevelopJvm(),
-                    "/md/java/core/": genBarJavaCore()
+                    "/md/java/core/": genBarJavaCore(),
+                    "/md/netty/basics/": getBarNettyBasics()
                 }
             }
         }
@@ -303,6 +313,19 @@ function genBarJavaCore() {
                 "2020-05-05-汉字不能编程？别闹了，只是看着有点豪横！容易被开除！.md",
                 "2020-11-22-鹿鼎记 · 韦小宝，丽春院、天地会、入皇宫等五个场景，搭配不同剧情讲解多线程和锁，真香！.md",
                 "2021-04-21-一个Bug，让我发现了 Java 界的AJ锥！.md"
+            ]
+        }
+    ]
+}
+// netty-basics
+function getBarNettyBasics(){
+  return [
+        {
+            title: "基础篇",
+            collapsable: false,
+            sidebarDepth: 0,
+            children: [
+                "NIO基础：三大组件.md"
             ]
         }
     ]
