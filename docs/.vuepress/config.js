@@ -31,8 +31,8 @@ module.exports = {
     locales: {
         "/": {
             lang: "zh-CN",
-            title: "bugstack 虫洞栈",
-            description: "包含: Java 基础，面经手册，Netty4.x，手写Spring，用Java实现JVM，重学Java设计模式，SpringBoot中间件开发，IDEA插件开发，DDD系统架构项目开发，字节码编程..."
+            title: "张忠振的笔记",
+            description: "包含: Java 基础，Netty，SpringBoot中间件开发..."
         }
     },
     head: [
@@ -40,27 +40,25 @@ module.exports = {
         ["link", {rel: "icon", href: `/favicon.ico`}],
         // meta
         ["meta", {name: "robots", content: "all"}],
-        ["meta", {name: "author", content: "小傅哥"}],
+        ["meta", {name: "author", content: "张忠振"}],
         ["meta", {"http-equiv": "Cache-Control", content: "no-cache, no-store, must-revalidate"}],
         ["meta", {"http-equiv": "Pragma", content: "no-cache"}],
         ["meta", {"http-equiv": "Expires", content: "0"}],
         ["meta", {
             name: "keywords",
-            content: "bugstack 虫洞栈, DDD抽奖系统，数据结构，重学Java设计模式, 字节码编程, 中间件, 手写Spring, 手写MyBatis，Java基础, 面经手册，面试题，API网关，SpringBoot Stater"
+            content: "张忠振的笔记,Java基础, SpringBoot Stater, Netty"
         }],
         ["meta", {name: "apple-mobile-web-app-capable", content: "yes"}],
         ['script',
             {
                 charset: 'utf-8',
                 async: 'async',
-                // src: 'https://code.jquery.com/jquery-3.5.1.min.js',
                 src: '/js/jquery.min.js',
             }],
         ['script',
             {
                 charset: 'utf-8',
                 async: 'async',
-                // src: 'https://code.jquery.com/jquery-3.5.1.min.js',
                 src: '/js/global.js',
             }],
         ['script',
@@ -88,20 +86,16 @@ module.exports = {
         ],
         ['@vuepress/medium-zoom', {
             selector: 'img:not(.nozoom)',
-            // See: https://github.com/francoischalifour/medium-zoom#options
             options: {
                 margin: 16
             }
         }],
-        // see: https://github.com/IOriens/vuepress-plugin-baidu-autopush
         ['vuepress-plugin-baidu-autopush', {}],
-        // see: https://github.com/znicholasbrown/vuepress-plugin-code-copy
         ['vuepress-plugin-code-copy', {
             align: 'bottom',
             color: '#3eaf7c',
-            successText: '@小傅哥: 代码已经复制到剪贴板'
+            successText: '代码已经复制到剪贴板'
         }],
-        // see: https://github.com/tolking/vuepress-plugin-img-lazy
         ['img-lazy', {}],
         ["vuepress-plugin-tags", {
             type: 'default', // 标签预定义样式
@@ -130,7 +124,7 @@ module.exports = {
         // 编辑文档的所在目录
         docsDir: 'docs',
         // 文档放在一个特定的分支下：
-        docsBranch: 'main',
+        docsBranch: 'master',
         //logo: "/logo.png",
         editLinks: true,
         sidebarDepth: 0,
@@ -139,7 +133,6 @@ module.exports = {
             "/": {
                 label: "简体中文",
                 selectText: "Languages",
-                editLinkText: "在 GitHub 上编辑此页",
                 nav: [
                       {
                         text: '首页', link: '/'

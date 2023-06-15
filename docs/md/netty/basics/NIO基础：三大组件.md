@@ -1,3 +1,11 @@
+---
+layout: post
+category: Netty-basics
+title: NIO基础：三大组件
+tagline: by 张忠振
+tag: [netty,Netty-basics]
+---
+
 # NIO 基础 : 三大组件
 
 > NIO : non-blocking io  (非阻塞 IO)
@@ -14,11 +22,7 @@ Buffer可以与Channel一起使用，实现数据的读写操作。
 
 在使用NIO进行IO操作时，通常会先创建一个Channel，然后将其与一个Buffer关联起来。这样，在进行读写操作时，可以将数据从Channel读取到Buffer中，或将数据从Buffer写入到Channel中。
 
-```mermaid
-graph LR
-channel --> buffer
-buffer --> channel
-```
+![image-netty-1-01](assets\images\netty\basics\1\netty-1-01.png)
 
 ## 1.1 常见的 Channel 
 
@@ -54,14 +58,7 @@ Selector是Java NIO中的一个重要组件，它允许单个线程处理多个�
 
 ### 2.1.1、多线程版设计
 
-```mermaid
-graph TD
-subgraph 多线程版
-t1(thread) --> s1(socket1)
-t2(thread) --> s2(socket2)
-t3(thread) --> s3(socket3)
-end
-```
+![netty-2-01](assets/images/netty/basics/1/netty-2-01.png)
 
 **⚠️ 多线程版缺点**
 
@@ -71,15 +68,7 @@ end
 
 ### 2.1.2、线程池版设计
 
-```mermaid
-graph TD
-subgraph 线程池版
-t4(thread) --> s4(socket1)
-t5(thread) --> s5(socket2)
-t4(thread) -.-> s6(socket3)
-t5(thread) -.-> s7(socket4)
-end
-```
+![image-20230615235623356](https://www.z-note.top/assets/images/netty/basics/1/netty-2-02.png)
 
 **⚠️ 线程池版缺点**
 
@@ -90,15 +79,7 @@ end
 
 Selector的作用就是配合一个线程来管理多个Channel，获取这些Channel 上发生的事件，这些Channel工作在非阻塞模式下，不会让线程吊死在一个Channel上。适合连接数特别多，但流量低的场景（low traffic）
 
-```mermaid
-graph TD
-subgraph selector 版
-thread --> selector
-selector --> c1(channel)
-selector --> c2(channel)
-selector --> c3(channel)
-end
-```
+![image-20230615235710237](https://www.z-note.top/assets/images/netty/basics/1/netty-2-03.png)
 
 Selector通过调用select()方法来等待一些通道准备好进行I/O操作，如果有通道准备好了，就可以处理它们。
 
