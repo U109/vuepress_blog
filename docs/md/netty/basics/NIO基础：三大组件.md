@@ -22,7 +22,7 @@ Buffer可以与Channel一起使用，实现数据的读写操作。
 
 在使用NIO进行IO操作时，通常会先创建一个Channel，然后将其与一个Buffer关联起来。这样，在进行读写操作时，可以将数据从Channel读取到Buffer中，或将数据从Buffer写入到Channel中。
 
-![image-netty-1-01](assets\images\netty\basics\1\netty-1-01.png)
+![image-netty-1-01](https://www.z-note.top/assets/images/netty/basics/1/netty-1-01.png)
 
 ## 1.1 常见的 Channel 
 
@@ -58,7 +58,7 @@ Selector是Java NIO中的一个重要组件，它允许单个线程处理多个�
 
 ### 2.1.1、多线程版设计
 
-![netty-2-01](assets/images/netty/basics/1/netty-2-01.png)
+![netty-2-01](https://www.z-note.top/assets/images/netty/basics/1/netty-2-01.png)
 
 **⚠️ 多线程版缺点**
 
