@@ -169,7 +169,7 @@ module.exports = {
                                 link: '/md/netty/basics/NIO基础：三大组件.md'
                             }
                         ]
-                    }
+                    },
                     {
                         text: '中间件',
                         items: [

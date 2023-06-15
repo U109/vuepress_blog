@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>NIO 基础 : 三大组件 | bugstack 虫洞栈</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <link rel="icon" href="/favicon.ico">
+    <script charset="utf-8" async="async" src="/js/jquery.min.js"></script>
+    <script charset="utf-8" async="async" src="/js/global.js"></script>
+    <script charset="utf-8" async="async" src="/js/fingerprint2.min.js"></script>
+    <script>
+              var _hmt = _hmt || [];
+              (function() {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?0b31b4c146bf7126aed5009e1a4a11c8";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+              })();
+            </script>
+    <meta name="description" content="包含: Java 基础，面经手册，Netty4.x，手写Spring，用Java实现JVM，重学Java设计模式，SpringBoot中间件开发，IDEA插件开发，DDD系统架构项目开发，字节码编程...">
+    <meta property="og:title" content="NIO 基础 : 三大组件">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="/md/netty/basics/NIO%E5%9F%BA%E7%A1%80%EF%BC%9A%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6.html">
+    <meta name="twitter:title" content="NIO 基础 : 三大组件">
+    <meta name="twitter:url" content="/md/netty/basics/NIO%E5%9F%BA%E7%A1%80%EF%BC%9A%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="all">
+    <meta name="author" content="小傅哥">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="keywords" content="bugstack 虫洞栈, DDD抽奖系统，数据结构，重学Java设计模式, 字节码编程, 中间件, 手写Spring, 手写MyBatis，Java基础, 面经手册，面试题，API网关，SpringBoot Stater">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <link rel="preload" href="/assets/css/0.styles.1cf1ed91.css" as="style"><link rel="preload" href="/assets/css/styles.css?v=1686842317929" as="style"><link rel="preload" href="/assets/js/cg-styles.js?v=1686842317929" as="script"><link rel="preload" href="/assets/js/cg-app.js?v=1686842317929" as="script"><link rel="preload" href="/assets/js/cg-3.js?v=1686842317929" as="script"><link rel="preload" href="/assets/js/cg-4.js?v=1686842317929" as="script"><link rel="preload" href="/assets/js/cg-63.js?v=1686842317929" as="script">
+    <link rel="stylesheet" href="/assets/css/0.styles.1cf1ed91.css"><link rel="stylesheet" href="/assets/css/styles.css?v=1686842317929">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">bugstack 虫洞栈</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Java" class="dropdown-title"><span class="title">Java</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/md/java/interview/2020-07-28-面经手册 · 开篇《面试官都问我啥》.html" class="nav-link">
+  面经手册
+</a></li><li class="dropdown-item"><!----> <a href="/md/java/develop-jvm/2019-05-01-用Java实现JVM第一章《命令行工具》.html" class="nav-link">
+  用Java实现JVM
+</a></li><li class="dropdown-item"><!----> <a href="/md/java/core/2020-01-06-[源码分析]咋嘞？你的IDEA过期了吧！加个Jar包就破解了，为什么？.html" class="nav-link">
+  基础技术
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Netty" class="dropdown-title"><span class="title">Netty</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/md/netty/basics/NIO基础：三大组件.html" class="nav-link">
+  Netty基础篇
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="中间件" class="dropdown-title"><span class="title">中间件</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/md/assembly/middleware/统一白名单组件.html" class="nav-link">
+  springboot中间件
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Java" class="dropdown-title"><span class="title">Java</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/md/java/interview/2020-07-28-面经手册 · 开篇《面试官都问我啥》.html" class="nav-link">
+  面经手册
+</a></li><li class="dropdown-item"><!----> <a href="/md/java/develop-jvm/2019-05-01-用Java实现JVM第一章《命令行工具》.html" class="nav-link">
+  用Java实现JVM
+</a></li><li class="dropdown-item"><!----> <a href="/md/java/core/2020-01-06-[源码分析]咋嘞？你的IDEA过期了吧！加个Jar包就破解了，为什么？.html" class="nav-link">
+  基础技术
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Netty" class="dropdown-title"><span class="title">Netty</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/md/netty/basics/NIO基础：三大组件.html" class="nav-link">
+  Netty基础篇
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="中间件" class="dropdown-title"><span class="title">中间件</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/md/assembly/middleware/统一白名单组件.html" class="nav-link">
+  springboot中间件
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>基础篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/md/netty/basics/NIO基础：三大组件.html" class="active sidebar-link">NIO 基础 : 三大组件</a></li></ul></section></li></ul> </aside> <div><main class="withouttoc page"> <div class="theme-default-content content__default"><h1 id="nio-基础-三大组件"><a href="#nio-基础-三大组件" class="header-anchor">#</a> NIO 基础 : 三大组件</h1> <blockquote><p>NIO : non-blocking io  (非阻塞 IO)</p></blockquote> <h1 id="一、channel-buffer"><a href="#一、channel-buffer" class="header-anchor">#</a> 一、Channel &amp; Buffer</h1> <p>在Java NIO中，Channel和Buffer是两个核心概念。</p> <p>Channel代表着一个<strong>可以进行IO操作的实体</strong>，如文件或网络连接。Channel提供了一种非阻塞的IO操作方式，可以在等待IO操作完成时同时执行其他任务。</p> <p>Buffer则是一个<strong>可以读写数据的缓冲区</strong>，它提供了一种在内存中临时存储数据的方式。</p> <p>Buffer可以与Channel一起使用，实现数据的读写操作。</p> <p>在使用NIO进行IO操作时，通常会先创建一个Channel，然后将其与一个Buffer关联起来。这样，在进行读写操作时，可以将数据从Channel读取到Buffer中，或将数据从Buffer写入到Channel中。</p> <div class="language-mermaid line-numbers-mode"><pre class="language-mermaid"><code><span class="token keyword">graph</span> LR
+channel <span class="token arrow operator">--&gt;</span> buffer
+buffer <span class="token arrow operator">--&gt;</span> channel
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h2 id="_1-1-常见的-channel"><a href="#_1-1-常见的-channel" class="header-anchor">#</a> 1.1 常见的 Channel</h2> <ul><li>FileChannel：用于文件的读写操作，可以读取、写入、映射和操作文件的部分内容。</li> <li>DatagramChannel：用于UDP协议的数据读写操作，可以在网络中发送和接收数据报。</li> <li>SocketChannel：用于TCP协议的数据读写操作，可以在网络中建立连接，发送和接收数据。</li> <li>ServerSocketChannel：用于监听TCP连接请求，可以接受客户端的连接请求，创建SocketChannel并进行数据读写操作。</li></ul> <h2 id="_1-2-常见的-buffer"><a href="#_1-2-常见的-buffer" class="header-anchor">#</a> 1.2 常见的 Buffer</h2> <ul><li>ByteBuffer：用于存储byte（字节）数据，是所有缓冲区类型中最常用的一种。
+<ul><li>MappedByteBuffer：一种特殊的ByteBuffer，可以将文件区域直接映射到内存中，从而实现高效的文件读写操作。</li> <li>DirectByteBuffer：将数据存储在JVM之外的内存中，可以提高IO操作的效率，适用于处理大量数据的场景。</li> <li>HeapByteBuffer：将数据存储在JVM内部的堆内存中，适用于处理小量数据的场景。</li></ul></li> <li>ShortBuffer：用于缓存short类型的数据</li> <li>IntBuffer：用于缓存int类型的数据</li> <li>LongBuffer：用于缓存long类型的数据</li> <li>FloatBuffer：用于缓存float类型的数据</li> <li>DoubleBuffer：用于缓存double类型的数据</li> <li>CharBuffer：用于缓存char类型的数据</li></ul> <h1 id="二、selector"><a href="#二、selector" class="header-anchor">#</a> 二、Selector</h1> <p>Selector是Java NIO中的一个重要组件，它允许单个线程处理多个通道的I/O操作。</p> <p>使用Selector可以使得一个线程处理多个通道的I/O操作，而不需要为每个通道创建一个线程。这样可以大大减少线程的数量，从而减少系统资源的使用。</p> <h2 id="_2-1-服务端设计"><a href="#_2-1-服务端设计" class="header-anchor">#</a> 2.1 服务端设计</h2> <h3 id="_2-1-1、多线程版设计"><a href="#_2-1-1、多线程版设计" class="header-anchor">#</a> 2.1.1、多线程版设计</h3> <div class="language-mermaid line-numbers-mode"><pre class="language-mermaid"><code><span class="token keyword">graph</span> TD
+<span class="token keyword">subgraph</span> 多线程版
+t1<span class="token text string">(thread)</span> <span class="token arrow operator">--&gt;</span> s1<span class="token text string">(socket1)</span>
+t2<span class="token text string">(thread)</span> <span class="token arrow operator">--&gt;</span> s2<span class="token text string">(socket2)</span>
+t3<span class="token text string">(thread)</span> <span class="token arrow operator">--&gt;</span> s3<span class="token text string">(socket3)</span>
+<span class="token keyword">end</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p><strong>⚠️ 多线程版缺点</strong></p> <ul><li>内存占用高</li> <li>线程上下文切换成本高</li> <li>只适合连接数少的场景</li></ul> <h3 id="_2-1-2、线程池版设计"><a href="#_2-1-2、线程池版设计" class="header-anchor">#</a> 2.1.2、线程池版设计</h3> <div class="language-mermaid line-numbers-mode"><pre class="language-mermaid"><code><span class="token keyword">graph</span> TD
+<span class="token keyword">subgraph</span> 线程池版
+t4<span class="token text string">(thread)</span> <span class="token arrow operator">--&gt;</span> s4<span class="token text string">(socket1)</span>
+t5<span class="token text string">(thread)</span> <span class="token arrow operator">--&gt;</span> s5<span class="token text string">(socket2)</span>
+t4<span class="token text string">(thread)</span> <span class="token arrow operator">-.-&gt;</span> s6<span class="token text string">(socket3)</span>
+t5<span class="token text string">(thread)</span> <span class="token arrow operator">-.-&gt;</span> s7<span class="token text string">(socket4)</span>
+<span class="token keyword">end</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p><strong>⚠️ 线程池版缺点</strong></p> <ul><li>阻塞模式下，线程仅能处理一个 socket 连接</li> <li>仅适合短连接场景</li></ul> <h3 id="_2-1-3、selector-版设计"><a href="#_2-1-3、selector-版设计" class="header-anchor">#</a> 2.1.3、Selector 版设计</h3> <p>Selector的作用就是配合一个线程来管理多个Channel，获取这些Channel 上发生的事件，这些Channel工作在非阻塞模式下，不会让线程吊死在一个Channel上。适合连接数特别多，但流量低的场景（low traffic）</p> <div class="language-mermaid line-numbers-mode"><pre class="language-mermaid"><code><span class="token keyword">graph</span> TD
+<span class="token keyword">subgraph</span> selector 版
+thread <span class="token arrow operator">--&gt;</span> selector
+selector <span class="token arrow operator">--&gt;</span> c1<span class="token text string">(channel)</span>
+selector <span class="token arrow operator">--&gt;</span> c2<span class="token text string">(channel)</span>
+selector <span class="token arrow operator">--&gt;</span> c3<span class="token text string">(channel)</span>
+<span class="token keyword">end</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>Selector通过调用select()方法来等待一些通道准备好进行I/O操作，如果有通道准备好了，就可以处理它们。</p> <p>当调用select()方法时，它会阻塞直到有一个或多个通道准备好进行I/O操作，或者超时时间到达。一旦有通道准备好了，select()方法就会返回所选通道的SelectionKey集合。可以通过SelectionKey的readyOps()方法来确定通道准备好了哪些I/O操作。</p></div> <footer class="page-edit"><div class="edit-link"><a rel="noopener noreferrer"> aaaa </a></div> <!----></footer> <!----> </main></div> <aside class="page-sidebar"> <div class="page-side-toolbar"><!----> <div class="option-box-toc-over"><img src="/images/system/toc.png" class="nozoom"> <span class="show-txt">目录</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="max-height:550px"><div style="font-weight:bold;text-align:center;">NIO 基础 : 三大组件</div> <hr> <div class="toc-box"><ul class="toc-sidebar-links"><li><a href="/md/netty/basics/NIO%E5%9F%BA%E7%A1%80%EF%BC%9A%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6.html#_1-1-常见的-channel" class="toc-sidebar-link">1.1 常见的 Channel</a><ul class="toc-sidebar-sub-headers"></ul></li><li><a href="/md/netty/basics/NIO%E5%9F%BA%E7%A1%80%EF%BC%9A%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6.html#_1-2-常见的-buffer" class="toc-sidebar-link">1.2 常见的 Buffer</a><ul class="toc-sidebar-sub-headers"></ul></li><li><a href="/md/netty/basics/NIO%E5%9F%BA%E7%A1%80%EF%BC%9A%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6.html#_2-1-服务端设计" class="toc-sidebar-link">2.1 服务端设计</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/md/netty/basics/NIO%E5%9F%BA%E7%A1%80%EF%BC%9A%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6.html#_2-1-1、多线程版设计" class="toc-sidebar-link">2.1.1、多线程版设计</a></li><li class="toc-sidebar-sub-header"><a href="/md/netty/basics/NIO%E5%9F%BA%E7%A1%80%EF%BC%9A%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6.html#_2-1-2、线程池版设计" class="toc-sidebar-link">2.1.2、线程池版设计</a></li><li class="toc-sidebar-sub-header"><a href="/md/netty/basics/NIO%E5%9F%BA%E7%A1%80%EF%BC%9A%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6.html#_2-1-3、selector-版设计" class="toc-sidebar-link">2.1.3、Selector 版设计</a></li></ul></li></ul></div></div></div></div></div> <div class="option-box"><img src="/images/system/github.png" width="28px" class="nozoom"> <span class="show-txt">Github</span></div> <div class="option-box"><img src="/images/system/gitee.png" width="28px" class="nozoom"> <span class="show-txt">Gitee</span></div> <div class="option-box"><img src="/images/system/left.png" width="28px" class="nozoom"> <span class="show-txt">左栏</span></div> <!----> <!----></div>  <!----> </aside></div><div class="global-ui"><LockArticle></LockArticle><PayArticle></PayArticle></div></div>
+    <script src="/assets/js/cg-styles.js?v=1686842317929" defer></script><script src="/assets/js/cg-3.js?v=1686842317929" defer></script><script src="/assets/js/cg-4.js?v=1686842317929" defer></script><script src="/assets/js/cg-63.js?v=1686842317929" defer></script><script src="/assets/js/cg-app.js?v=1686842317929" defer></script>
+  </body>
+</html>
