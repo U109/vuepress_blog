@@ -318,7 +318,8 @@ function getBarNettyBasics(){
             collapsable: false,
             sidebarDepth: 0,
             children: [
-                "NIO基础：三大组件.md"
+                "NIO基础：三大组件.md",
+                "NIO基础：ByteBuffer基本使用.md"
             ]
         }
     ]
