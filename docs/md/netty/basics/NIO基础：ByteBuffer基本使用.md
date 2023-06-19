@@ -1,8 +1,8 @@
-# ByteBuffer基本使用
+# NIO基础：ByteBuffer基本使用
 
 ## 一、ByteBuffer使用示例
 
-### 1.1目录结构
+### 1.1 目录结构
 
 ```java
 netty-basics
@@ -36,7 +36,7 @@ dsahlkdhaslhkdsalk
 public class TestByteBuffer {
 
     public static void main(String[] args) {
-        try (FileChannel channel = new FileInputStream("netty-					basics/src/main/resources/data.txt").getChannel()) {
+        try (FileChannel channel = new FileInputStream("netty-basics/src/main/resources/data.txt").getChannel()) {
             //准备缓冲区
             ByteBuffer buffer = ByteBuffer.allocate(10);
             while (true){
