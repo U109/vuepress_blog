@@ -151,6 +151,10 @@ module.exports = {
                             {
                                 text: '基础技术',
                                 link: '/md/java/core/2020-01-06-[源码分析]咋嘞？你的IDEA过期了吧！加个Jar包就破解了，为什么？.md'
+                            },
+                            {
+                                text: 'Java并发',
+                                link: '/md/java/concurrent/Java中的CAS.md'
                             }
                         ]
                     },
@@ -177,6 +181,7 @@ module.exports = {
                     "/md/java/interview/": genBarJavaInterview(),
                     "/md/java/develop-jvm/": genBarJavaDevelopJvm(),
                     "/md/java/core/": genBarJavaCore(),
+                    "/md/java/concurrent/":getBarJavaConcurrent(),
                     "/md/netty/basics/": getBarNettyBasics()
                 }
             }
@@ -285,6 +290,19 @@ function genBarJavaDevelopJvm() {
                 "2019-05-09-用Java实现JVM第八章《数组和字符串》.md",
                 "2019-05-10-用Java实现JVM第九章《本地方法调用》.md",
                 "2019-05-11-用Java实现JVM第十章《异常处理》.md"
+            ]
+        }
+    ]
+}
+
+function getBarJavaConcurrent() {
+    return [
+        {
+            title: "并发问题",
+            collapsable: false,
+            sidebarDepth: 0,
+            children: [
+                "Java中的CAS.md"
             ]
         }
     ]
