@@ -24,6 +24,7 @@
     "browserslist": "^4.16.3",
     "caniuse-lite": "^1.0.30001196",
     "screenfull": "^5.1.0",
+    "vitepress-markdown-timeline": "^1.2.1",
     "vuepress-plugin-baidu-autopush": "^1.0.1",
     "vuepress-plugin-code-copy": "^1.0.6",
     "vuepress-plugin-copyright": "^1.0.2",
